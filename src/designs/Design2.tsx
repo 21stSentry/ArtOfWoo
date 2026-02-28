@@ -1274,10 +1274,10 @@ export default function Design2() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('/api/subscribe', {
+      const res = await fetch('https://buttondown.com/api/emails/embed-subscribe/michaeldevin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email_address: email }),
       })
       if (res.ok) {
         setSubmitted(true)
