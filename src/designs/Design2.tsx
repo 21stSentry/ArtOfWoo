@@ -1274,12 +1274,9 @@ export default function Design2() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('https://api.buttondown.email/v1/subscribers', {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
-        headers: {
-          'Authorization': 'Token 3152ddc4-ac66-4587-9ca6-3c802c8c07c4',
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       })
       if (res.ok) {
