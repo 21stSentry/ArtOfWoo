@@ -1163,7 +1163,6 @@ const IMG = {
   stainedGlass: '/images/church-of-woo-stained-glass.jpg',
   eventNotel:   '/images/church-of-woo-notel-event.jpg',
   bassFloor:    '/images/crescendo-bass-floor-tiles.jpg',
-  bowrain:      '/images/bowrain-betscher-artist.jpg',
   mrTea:        '/images/mr-tea-michael-devin.jpg',
   dalyte:       '/images/dalyte-kodzis-singer-performer.jpg',
   ambscience:   '/images/ambscience-paul-de-konkoly-thege.jpg',
@@ -1473,7 +1472,6 @@ export default function Design2() {
 
             <div className="d2-exp-cards" style={{ marginTop: '3rem', display: 'none' }}>
               <div className="d2-exp-card">
-                <div className="d2-exp-card-img" style={{ backgroundImage: `url(${IMG.bowrain})` }} />
                 <span className="d2-exp-card-num">I</span>
                 <h3 className="d2-exp-card-title">Neurobiotic Senseways</h3>
                 <span style={{ fontFamily: "'Cormorant SC', serif", fontSize: '0.8rem', letterSpacing: '0.3em', color: '#e0c078', display: 'block', marginBottom: '1rem' }}>
