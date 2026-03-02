@@ -1274,16 +1274,20 @@ export default function Design2() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('https://buttondown.com/api/emails/embed-subscribe/michaeldevin', {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email_address: email }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({ email }),
       })
       if (res.ok) {
         setSubmitted(true)
+        setEmail('')
       } else {
-        const data = await res.json()
-        setError(data?.email?.[0] ?? 'Something went wrong. Please try again.')
+        const data = await res.json().catch(() => null)
+        setError(data?.error ?? 'Something went wrong. Please try again.')
       }
     } catch {
       setError('Unable to connect. Please try again.')
