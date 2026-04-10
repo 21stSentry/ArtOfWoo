@@ -1548,18 +1548,13 @@ export default function Design2() {
     setLoading(true)
     setError('')
     try {
-      const body = new URLSearchParams({
-        email,
-        embed: '1',
-      })
-
-      const res = await fetch('https://buttondown.com/api/emails/embed-subscribe/michaeldevin', {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: body.toString(),
+        body: JSON.stringify({ email }),
       })
 
       if (res.ok) {
