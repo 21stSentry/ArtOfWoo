@@ -1,0 +1,11 @@
+AuthType Basic
+AuthName "Event Ops"
+AuthUserFile /homepages/34/d90651989/htdocs/music.michaeldevin.com/event-ops/.htpasswd
+Require valid-user
+
+RewriteEngine On
+RewriteBase /event-ops/
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /event-ops/index.html [L]
