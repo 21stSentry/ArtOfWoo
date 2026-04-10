@@ -44,22 +44,38 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 }
 
 function normalizeError(data: unknown): string {
-  if (!data) return 'Subscription failed.'
-  if (typeof data === 'string') return data
-  if (typeof data !== 'object') return 'Subscription failed.'
+  if (!data) return 'Please check your email to confirm your subscription if needed.'
+  if (typeof data === 'string') return sanitizeProviderMessage(data)
+  if (typeof data !== 'object') return 'Please check your email to confirm your subscription if needed.'
 
   const record = data as Record<string, unknown>
-  if (typeof record.detail === 'string') return record.detail
-  if (typeof record.error === 'string') return record.error
+  if (typeof record.detail === 'string') return sanitizeProviderMessage(record.detail)
+  if (typeof record.error === 'string') return sanitizeProviderMessage(record.error)
   if (Array.isArray(record.error) && record.error.length > 0) {
     const first = record.error[0]
-    if (typeof first === 'string') return first
+    if (typeof first === 'string') return sanitizeProviderMessage(first)
     if (first && typeof first === 'object' && 'msg' in first && typeof (first as { msg?: unknown }).msg === 'string') {
-      return (first as { msg: string }).msg
+      return sanitizeProviderMessage((first as { msg: string }).msg)
     }
   }
 
-  return 'Subscription failed.'
+  return 'Please check your email to confirm your subscription if needed.'
+}
+
+function sanitizeProviderMessage(message: string): string {
+  const normalized = message.toLowerCase()
+
+  if (
+    normalized.includes('already subscribed') ||
+    normalized.includes('not confirmed') ||
+    normalized.includes('confirm') ||
+    normalized.includes('subscriber') ||
+    normalized.includes('id=')
+  ) {
+    return 'Please check your email to confirm your subscription if needed.'
+  }
+
+  return message
 }
 
 function applyCors(req: VercelRequest, res: VercelResponse) {
