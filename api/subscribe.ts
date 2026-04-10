@@ -22,16 +22,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email_address: email }),
     })
 
     const data = await response.json().catch(() => null)
     if (!response.ok) {
-      const error =
-        data?.detail ||
-        data?.email?.[0] ||
-        data?.error ||
-        'Subscription failed.'
+      const error = normalizeError(data)
       return res.status(response.status).json({ error })
     }
 
@@ -39,4 +35,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch {
     return res.status(502).json({ error: 'Unable to reach mailing list provider.' })
   }
+}
+
+function normalizeError(data: unknown): string {
+  if (!data) return 'Subscription failed.'
+  if (typeof data === 'string') return data
+  if (typeof data !== 'object') return 'Subscription failed.'
+
+  const record = data as Record<string, unknown>
+  if (typeof record.detail === 'string') return record.detail
+  if (typeof record.error === 'string') return record.error
+  if (Array.isArray(record.error) && record.error.length > 0) {
+    const first = record.error[0]
+    if (typeof first === 'string') return first
+    if (first && typeof first === 'object' && 'msg' in first && typeof (first as { msg?: unknown }).msg === 'string') {
+      return (first as { msg: string }).msg
+    }
+  }
+
+  return 'Subscription failed.'
 }
