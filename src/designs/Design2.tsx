@@ -228,7 +228,7 @@ html { scroll-behavior: smooth; }
 
 .d2-hero-eyebrow {
   font-family: 'Cormorant SC', serif;
-  font-size: 1.05rem;
+  font-size: 1.4rem;
   letter-spacing: 0.5em;
   color: #e0c078;
   display: block;
@@ -256,7 +256,7 @@ html { scroll-behavior: smooth; }
   font-weight: 300;
   font-style: italic;
   color: #c8a870;
-  display: block;
+  display: none;
   letter-spacing: 0.35em;
   margin: 0.2rem 0;
   animation: d2FadeIn 1.2s ease 0.55s both;
@@ -274,6 +274,14 @@ html { scroll-behavior: smooth; }
   background-clip: text;
   display: block;
   animation: d2FadeIn 1.2s ease 0.6s both;
+}
+
+.d2-hero-logo {
+  display: block;
+  width: min(39rem, 78vw);
+  height: auto;
+  margin: 0 auto;
+  animation: d2FadeIn 1.2s ease 0.5s both;
 }
 
 .d2-hero-sub {
@@ -724,7 +732,7 @@ html { scroll-behavior: smooth; }
   outline: none;
   padding: 0.5rem 1.5rem 1rem;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-size: 1.4rem;
   font-style: italic;
   color: #e8d5b0;
   width: 100%;
@@ -738,7 +746,7 @@ html { scroll-behavior: smooth; }
   outline: none;
   padding: 1rem 1.5rem;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-size: 1.4rem;
   font-style: italic;
   color: #e8d5b0;
   resize: vertical;
@@ -819,7 +827,7 @@ html { scroll-behavior: smooth; }
   outline: none;
   padding: 1rem 1.5rem;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.95rem;
+  font-size: 1.4rem;
   font-style: italic;
   color: #e8d5b0;
 }
@@ -908,7 +916,7 @@ html { scroll-behavior: smooth; }
   inset: 0;
   background-size: cover;
   background-position: center 20%;
-  opacity: 0.2;
+  opacity: 0.4;
   z-index: 0;
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
   mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
@@ -1157,10 +1165,276 @@ html { scroll-behavior: smooth; }
   margin: 0 auto;
   opacity: 0.3;
 }
+
+@media (max-width: 960px) {
+  .d2-nav {
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.2rem;
+    justify-content: center;
+  }
+
+  .d2-nav-logo {
+    width: 100%;
+    text-align: center;
+  }
+
+  .d2-nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.25rem;
+  }
+
+  .d2-container {
+    padding: 0 1.5rem;
+  }
+
+  .d2-hero {
+    min-height: auto;
+    padding: 10rem 0 6rem;
+  }
+
+  .d2-hero-sub {
+    max-width: 32rem;
+  }
+
+  .d2-hero-actions {
+    flex-direction: column;
+    width: min(100%, 26rem);
+    gap: 0.9rem;
+  }
+
+  .d2-btn-gold,
+  .d2-btn-ghost,
+  .d2-contact-submit,
+  .d2-form-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .d2-about-inner,
+  .d2-contact-row,
+  .d2-testimonial-grid,
+  .d2-artist-grid,
+  .d2-gallery-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .d2-about-col-divider {
+    width: 100%;
+    height: 1px;
+    min-height: 0;
+  }
+
+  .d2-form {
+    flex-direction: column;
+    gap: 1px;
+    max-width: 100%;
+  }
+
+  .d2-footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .d2-glow-orb,
+  .d2-pillars,
+  .d2-particles {
+    display: none;
+  }
+
+  .d2-nav {
+    position: absolute;
+    padding: 0.85rem 1rem 1rem;
+    gap: 0.75rem;
+    background: linear-gradient(to bottom, rgba(8,5,16,0.92), rgba(8,5,16,0.35), transparent);
+    backdrop-filter: none;
+  }
+
+  .d2-nav-logo {
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+  }
+
+  .d2-nav-links {
+    gap: 0.6rem 0.9rem;
+  }
+
+  .d2-nav-link {
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  .d2-nav-cta {
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 1rem;
+  }
+
+  .d2-nav-cta {
+    display: none;
+  }
+
+  .d2-container {
+    padding: 0 1rem;
+  }
+
+  .d2-section,
+  .d2-about,
+  .d2-artists,
+  .d2-testimonials,
+  .d2-contact-section,
+  .d2-cta-section {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .d2-hero {
+    padding: 9rem 0 4rem;
+  }
+
+  .d2-hero-ornament-top,
+  .d2-hero-scroll {
+    display: none;
+  }
+
+  .d2-hero-eyebrow,
+  .d2-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+  }
+
+  .d2-hero-title-art {
+    font-size: clamp(2.6rem, 16vw, 4.25rem);
+  }
+
+  .d2-hero-title-of {
+    font-size: clamp(0.95rem, 5vw, 1.4rem);
+    letter-spacing: 0.28em;
+  }
+
+  .d2-hero-title-woo {
+    font-size: clamp(3rem, 18vw, 4.8rem);
+  }
+
+  .d2-hero-logo {
+    width: min(30rem, 84vw);
+  }
+
+  .d2-hero-sub,
+  .d2-cta-text,
+  .d2-body-text,
+  .d2-body-text-plain,
+  .d2-testimonial-quote,
+  .d2-artist-bio {
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .d2-section-title,
+  .d2-cta-title {
+    font-size: clamp(2rem, 11vw, 3.1rem);
+  }
+
+  .d2-ornament-divider {
+    gap: 0.75rem;
+  }
+
+  .d2-gallery-item-label,
+  .d2-video-caption,
+  .d2-footer-link,
+  .d2-footer-logo,
+  .d2-footer-copy {
+    letter-spacing: 0.18em;
+  }
+
+  .d2-gallery-item-label {
+    left: 1rem;
+    bottom: 1rem;
+    font-size: 0.62rem;
+  }
+
+  .d2-stat-row {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  .d2-stat {
+    flex: 1;
+  }
+
+  .d2-video-inner {
+    padding: 3rem 1rem;
+  }
+
+  .d2-artist-card,
+  .d2-testimonial-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .d2-contact-form {
+    margin-top: 2rem;
+  }
+
+  .d2-contact-label {
+    padding: 0.9rem 1rem 0;
+  }
+
+  .d2-contact-input,
+  .d2-contact-textarea,
+  .d2-form-input {
+    font-size: 1.05rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .d2-contact-input {
+    padding-bottom: 0.9rem;
+  }
+
+  .d2-contact-textarea {
+    min-height: 140px;
+  }
+
+  .d2-form-btn,
+  .d2-contact-submit {
+    padding: 1rem 1.25rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+  }
+
+  .d2-form-privacy {
+    font-size: 0.95rem;
+  }
+
+  .d2-lightbox {
+    padding: 1rem;
+  }
+
+  .d2-lightbox-caption {
+    bottom: 1rem;
+    white-space: normal;
+    text-align: center;
+    width: calc(100vw - 2rem);
+  }
+
+  .d2-lightbox-close {
+    top: 0.75rem;
+    right: 1rem;
+  }
+}
 `
 
 const IMG = {
   stainedGlass: '/images/church-of-woo-stained-glass.jpg',
+  logo:         '/images/church-of-woo-logo.webp',
   eventNotel:   '/images/church-of-woo-notel-event.jpg',
   bassFloor:    '/images/crescendo-bass-floor-tiles.jpg',
   mrTea:        '/images/mr-tea-michael-devin.jpg',
@@ -1274,14 +1548,20 @@ export default function Design2() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('/api/subscribe', {
+      const body = new URLSearchParams({
+        email,
+        embed: '1',
+      })
+
+      const res = await fetch('https://buttondown.com/api/emails/embed-subscribe/michaeldevin', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
           'Accept': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: body.toString(),
       })
+
       if (res.ok) {
         setSubmitted(true)
         setEmail('')
@@ -1329,6 +1609,7 @@ export default function Design2() {
           <div className="d2-nav-links">
             <a href="#experience" className="d2-nav-link" onClick={scrollTo('experience')}>The Experience</a>
             <a href="#artists" className="d2-nav-link" onClick={scrollTo('artists')}>Artists</a>
+            <a href="/media-package" className="d2-nav-link">Media Package</a>
             <a href="#contact" className="d2-nav-link" onClick={scrollTo('contact')}>Contact</a>
             <a href="#join" className="d2-nav-cta" onClick={scrollTo('join')}>Join Mailing List</a>
           </div>
@@ -1344,9 +1625,13 @@ export default function Design2() {
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <span className="d2-hero-eyebrow">Bay Area Immersive Sound Experiences</span>
 
-            <span className="d2-hero-title-art">Church</span>
+            <img
+              className="d2-hero-logo"
+              src={IMG.logo}
+              alt="Church Of Woo"
+              loading="eager"
+            />
             <span className="d2-hero-title-of">— of —</span>
-            <span className="d2-hero-title-woo">Woo</span>
 
             <p className="d2-hero-sub">
               Ceremony. Surround sound. Vibration.
@@ -1354,7 +1639,7 @@ export default function Design2() {
             </p>
 
             <div className="d2-hero-actions">
-              <a href="#join" className="d2-btn-gold" onClick={scrollTo('join')}>Join the Mailing List</a>
+              <a href="#join" className="d2-btn-gold" onClick={scrollTo('join')}><strong>Join the Mailing List</strong></a>
               <a href="#experience" className="d2-btn-ghost" onClick={scrollTo('experience')}>Discover the Experience</a>
             </div>
 
@@ -1376,7 +1661,7 @@ export default function Design2() {
 
             <div className="d2-about-inner">
               <div className="d2-about-col">
-                <span className="d2-eyebrow">What is Woo Art Collective</span>
+                <span className="d2-eyebrow">What is the Collective?</span>
                 <h2 className="d2-section-title">The Art of <em>Sound</em> & Ceremony</h2>
                 <p className="d2-body-text" style={{ fontStyle: 'normal' }}>
                   We create immersive music listening experiences that dissolve the barrier between performer and audience, between sound and body.
@@ -1673,7 +1958,7 @@ export default function Design2() {
                   <p className="d2-form-privacy">We respect your privacy. Unsubscribe at any time.</p>
                 </>
               ) : (
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem', fontStyle: 'italic', color: 'rgba(201,168,76,0.6)', marginTop: '1rem' }}>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.4rem', fontWeight: 600, fontStyle: 'italic', color: 'rgba(201,168,76,0.75)', marginTop: '3rem', textAlign: 'center', lineHeight: 1.8 }}>
                   ✦ &nbsp; Thank you, welcome to the Woo! &nbsp; ✦
                 </div>
               )}
@@ -1730,7 +2015,7 @@ export default function Design2() {
                         value={contact.message} onChange={e => setContact(c => ({ ...c, message: e.target.value }))} />
                     </div>
                     <button className="d2-contact-submit" type="submit" disabled={contactLoading}>
-                      {contactLoading ? '...' : 'Send Message'}
+                      {contactLoading ? '...' : <strong>Send Message</strong>}
                     </button>
                   </form>
                   {contactError && (
@@ -1738,7 +2023,7 @@ export default function Design2() {
                       {contactError}
                     </p>
                   )}
-                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1rem', fontStyle: 'italic', color: '#c8b070', marginTop: '1.5rem', textAlign: 'center' }}>
+                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.4rem', fontStyle: 'italic', color: '#c8b070', marginTop: '1.5rem', textAlign: 'center' }}>
                     If you don't hear back within 48 hours, please check your spam folder.
                   </p>
                 </>
