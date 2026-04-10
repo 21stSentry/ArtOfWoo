@@ -1,5 +1,14 @@
 import { useState, useEffect, useCallback } from 'react'
 
+function getSubscribeEndpoint() {
+  const hostname = window.location.hostname
+  if (hostname === 'michaeldevin.com' || hostname === 'www.michaeldevin.com') {
+    return 'https://www.artofwoo.org/api/subscribe'
+  }
+
+  return '/api/subscribe'
+}
+
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant+SC:wght@300;400;600&display=swap');
 
@@ -1548,7 +1557,7 @@ export default function Design2() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('/api/subscribe', {
+      const res = await fetch(getSubscribeEndpoint(), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
