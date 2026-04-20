@@ -1666,7 +1666,7 @@ export default function Design2() {
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="d2-hero-eyebrow">Immersive music and art experience in the San Francisco Bay Area</span>
+            <span className="d2-hero-eyebrow">San Francisco Bay Area Immersive music & art experiences</span>
 
             <img
               className="d2-hero-logo"
@@ -1676,7 +1676,7 @@ export default function Design2() {
             />
             <span className="d2-hero-title-of">— of —</span>
 
-            <h1 className="d2-hero-h1">Immersive music and art experience in the San Francisco Bay Area</h1>
+            <h1 className="d2-hero-h1">Church of Woo by Woo Art Collective</h1>
 
             <p className="d2-hero-sub">
               Artist-built listening environments with 360-degree sound,
