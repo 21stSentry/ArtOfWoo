@@ -1667,7 +1667,7 @@ export default function Design2() {
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1 className="d2-hero-eyebrow">San Francisco Bay Area Immersive music & art experiences</h1>
+            <h1 className="d2-hero-eyebrow">San Francisco Bay Area<br />Immersive music & art experiences</h1>
 
             <img
               className="d2-hero-logo"
