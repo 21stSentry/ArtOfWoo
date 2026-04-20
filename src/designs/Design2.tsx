@@ -1666,7 +1666,7 @@ export default function Design2() {
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="d2-hero-eyebrow">Church of Woo by Woo Art Collective</span>
+            <span className="d2-hero-eyebrow">Immersive music and art experience in the San Francisco Bay Area</span>
 
             <img
               className="d2-hero-logo"
