@@ -1676,8 +1676,6 @@ export default function Design2() {
             />
             <span className="d2-hero-title-of">— of —</span>
 
-            <h1 className="d2-hero-h1">Church of Woo by Woo Art Collective</h1>
-
             <p className="d2-hero-sub">
               Artist-built listening environments with 360-degree sound,
               tactile bass, ceremony, and live performance.
