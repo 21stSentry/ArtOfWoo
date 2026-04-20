@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useDocumentSeo } from './seo'
 
 const centerArtwork = new URL('../images/Sonic-Bloom-gold.jpg', import.meta.url).href
+const MEDIA_PACKAGE_TITLE = 'Sonic Bloom Media Package | Immersive Music and Art Experience'
+const MEDIA_PACKAGE_DESCRIPTION = 'Sonic Bloom is an immersive music and art experience for Bay Area venues, festivals, galleries, and private events, combining spatial sound, tactile bass, ceremony, and live performance.'
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap');
@@ -937,6 +940,12 @@ function YouTubeIcon() {
 }
 
 export default function MediaPackage() {
+  useDocumentSeo({
+    title: MEDIA_PACKAGE_TITLE,
+    description: MEDIA_PACKAGE_DESCRIPTION,
+    canonicalPath: '/media-package',
+  })
+
   const [contact, setContact] = useState({ name: '', email: '', phone: '', message: '' })
   const [contactSubmitted, setContactSubmitted] = useState(false)
   const [contactError, setContactError] = useState('')
@@ -993,7 +1002,7 @@ export default function MediaPackage() {
       <style dangerouslySetInnerHTML={{ __html: css }} />
       <main className="mp">
         <nav className="mp-nav" aria-label="Media package navigation">
-          <div className="mp-nav-center">Bay Area Immersive Sound Experience</div>
+          <div className="mp-nav-center">Bay Area Immersive Music and Art Experience</div>
           <div className="mp-nav-links">
             <Link to="/" className="mp-nav-link">Home</Link>
             <a href="#contact" className="mp-nav-link">Get in Touch</a>

@@ -12,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/event-ops" element={<EventOps />} />
         <Route path="/media-package" element={<MediaPackage />} />
+        <Route path="/media-package.html" element={<MediaPackage />} />
         <Route path="/*" element={<Design2 />} />
       </Routes>
     </BrowserRouter>

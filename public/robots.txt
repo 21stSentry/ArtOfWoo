@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /event-ops
+
+Sitemap: https://www.artofwoo.org/sitemap.xml

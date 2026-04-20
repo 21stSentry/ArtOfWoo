@@ -1,4 +1,25 @@
 import { useState, useEffect, useCallback } from 'react'
+import { useDocumentSeo } from '../seo'
+
+const HOME_TITLE = 'Immersive Music and Art Experience in San Francisco Bay Area | Church of Woo'
+const HOME_DESCRIPTION = 'Church of Woo by Woo Art Collective is an immersive music and art experience in the San Francisco Bay Area featuring spatial surround sound, a tactile bass floor, ceremony, and live performance.'
+const HOME_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: 'Woo Art Collective',
+      alternateName: 'Church of Woo',
+      url: 'https://www.artofwoo.org/',
+      description: 'Woo Art Collective creates immersive music and art experiences in the San Francisco Bay Area using spatial sound, ceremony, live performance, and tactile bass.',
+    },
+    {
+      '@type': 'WebSite',
+      name: 'Church of Woo',
+      url: 'https://www.artofwoo.org/',
+    },
+  ],
+}
 
 function getSubscribeEndpoint() {
   const hostname = window.location.hostname
@@ -269,6 +290,17 @@ html { scroll-behavior: smooth; }
   letter-spacing: 0.35em;
   margin: 0.2rem 0;
   animation: d2FadeIn 1.2s ease 0.55s both;
+}
+
+.d2-hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: #f5eedc;
+  max-width: 14ch;
+  margin: 1rem auto 0;
+  animation: d2FadeIn 1.2s ease 0.7s both;
 }
 
 .d2-hero-title-woo {
@@ -1516,6 +1548,13 @@ function Lightbox({ src, caption, onClose }: { src: string; caption: string; onC
 }
 
 export default function Design2() {
+  useDocumentSeo({
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    canonicalPath: '/',
+    schema: HOME_SCHEMA,
+  })
+
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -1627,7 +1666,7 @@ export default function Design2() {
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="d2-hero-eyebrow">Bay Area Immersive Sound Experiences</span>
+            <span className="d2-hero-eyebrow">Church of Woo by Woo Art Collective</span>
 
             <img
               className="d2-hero-logo"
@@ -1637,9 +1676,11 @@ export default function Design2() {
             />
             <span className="d2-hero-title-of">— of —</span>
 
+            <h1 className="d2-hero-h1">Immersive music and art experience in the San Francisco Bay Area</h1>
+
             <p className="d2-hero-sub">
-              Ceremony. Surround sound. Vibration.
-              An immersive music experience unlike anything you've encountered.
+              Artist-built listening environments with 360-degree sound,
+              tactile bass, ceremony, and live performance.
             </p>
 
             <div className="d2-hero-actions">
@@ -1668,7 +1709,7 @@ export default function Design2() {
                 <span className="d2-eyebrow">What is the Collective?</span>
                 <h2 className="d2-section-title">The Art of <em>Sound</em> & Ceremony</h2>
                 <p className="d2-body-text" style={{ fontStyle: 'normal' }}>
-                  We create immersive music listening experiences that dissolve the barrier between performer and audience, between sound and body.
+                  We create immersive music and art experiences that dissolve the barrier between performer and audience, and between sound, space, and body.
                 </p>
                 <p className="d2-body-text-plain">
                   Each event is a journey: beginning with ceremony and unfolding into fully immersive sound, delivered through 11 speakers and a bass floor that you feel as much as hear.
