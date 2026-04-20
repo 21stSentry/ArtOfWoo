@@ -259,6 +259,7 @@ html { scroll-behavior: smooth; }
 .d2-hero-eyebrow {
   font-family: 'Cormorant SC', serif;
   font-size: 1.4rem;
+  font-weight: 700;
   letter-spacing: 0.5em;
   color: #e0c078;
   display: block;
