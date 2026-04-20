@@ -262,6 +262,7 @@ html { scroll-behavior: smooth; }
   letter-spacing: 0.5em;
   color: #e0c078;
   display: block;
+  margin: 0;
   margin-bottom: 2rem;
   animation: d2FadeIn 1s ease 0.4s both;
 }
@@ -1666,7 +1667,7 @@ export default function Design2() {
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="d2-hero-eyebrow">San Francisco Bay Area Immersive music & art experiences</span>
+            <h1 className="d2-hero-eyebrow">San Francisco Bay Area Immersive music & art experiences</h1>
 
             <img
               className="d2-hero-logo"
