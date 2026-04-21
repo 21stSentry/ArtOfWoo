@@ -12,6 +12,7 @@ function unauthorized() {
 }
 
 export const config = {
+  runtime: 'nodejs',
   matcher: ['/event-ops', '/event-ops/:path*'],
 }
 
