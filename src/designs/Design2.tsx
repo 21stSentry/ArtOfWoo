@@ -142,7 +142,7 @@ html { scroll-behavior: smooth; }
 
 .d2-nav-brand-mark {
   display: block;
-  height: 50px;
+  height: 38px;
   width: auto;
   flex: 0 0 auto;
   object-fit: contain;
@@ -1309,7 +1309,7 @@ html { scroll-behavior: smooth; }
   }
 
   .d2-nav-brand-mark {
-    height: 42px;
+    height: 32px;
   }
 
   .d2-container {
@@ -1386,7 +1386,7 @@ html { scroll-behavior: smooth; }
   }
 
   .d2-nav-brand-mark {
-    height: 34px;
+    height: 26px;
   }
 
   .d2-nav-link {
