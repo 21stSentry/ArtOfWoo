@@ -238,6 +238,7 @@ html { scroll-behavior: smooth; }
 
 /* ─── HERO ─── */
 .d2-hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -265,12 +266,15 @@ html { scroll-behavior: smooth; }
 }
 
 .d2-sonic-bloom-logo {
+  position: absolute;
+  top: 7rem;
+  left: clamp(2rem, 5vw, 5rem);
+  z-index: 2;
   display: block;
-  height: 300px;
+  height: 100px;
   width: auto;
-  max-width: min(78vw, 42rem);
+  max-width: min(42vw, 24rem);
   object-fit: contain;
-  margin: 0 auto 1.75rem;
   animation: d2FadeIn 1s ease 0.32s both;
   user-select: none;
   -webkit-user-drag: none;
@@ -1333,10 +1337,6 @@ html { scroll-behavior: smooth; }
     max-width: 32rem;
   }
 
-  .d2-sonic-bloom-logo {
-    height: 240px;
-  }
-
   .d2-hero-actions {
     flex-direction: column;
     width: min(100%, 26rem);
@@ -1548,9 +1548,10 @@ html { scroll-behavior: smooth; }
   }
 
   .d2-sonic-bloom-logo {
-    height: 180px;
-    max-width: 88vw;
-    margin-bottom: 1.25rem;
+    top: 5.5rem;
+    left: 1rem;
+    height: 100px;
+    max-width: 60vw;
   }
 
   .d2-form-privacy {
