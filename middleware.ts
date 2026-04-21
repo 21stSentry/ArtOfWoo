@@ -1,3 +1,5 @@
+import { next } from '@vercel/functions'
+
 const USER_ENV = 'EVENT_OPS_BASIC_AUTH_USER'
 const PASSWORD_ENV = 'EVENT_OPS_BASIC_AUTH_PASSWORD'
 
@@ -56,5 +58,5 @@ export default function middleware(request: Request) {
     return unauthorized()
   }
 
-  return fetch(request)
+  return next()
 }
