@@ -4,7 +4,7 @@ import { useDocumentSeo } from '../seo'
 const HOME_TITLE = 'Immersive Music and Art Experience in San Francisco Bay Area | Church of Woo'
 const HOME_DESCRIPTION = 'Church of Woo by Woo Art Collective is an immersive music and art experience in the San Francisco Bay Area featuring spatial surround sound, a tactile bass floor, ceremony, and live performance.'
 const HERO_LOGO = new URL('../../images/church-of-woo-logo.svg', import.meta.url).href
-const CHURCH_OF_WOO_WORDMARK = new URL('../../images/church-of-woo-logo-inline.svg', import.meta.url).href
+const SONIC_BLOOM_INLINE = new URL('../../images/sonic-bloom-logo-inline.svg', import.meta.url).href
 const HOME_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -1766,7 +1766,7 @@ export default function Design2() {
         {/* Navigation */}
         <nav className="d2-nav">
           <div className="d2-nav-links">
-            <img className="d2-nav-brand-mark" src={CHURCH_OF_WOO_WORDMARK} alt="Church of Woo" loading="eager" />
+            <img className="d2-nav-brand-mark" src={SONIC_BLOOM_INLINE} alt="Sonic Bloom" loading="eager" />
             <a href="#experience" className="d2-nav-link" onClick={scrollTo('experience')}>The Experience</a>
             <a href="#artists" className="d2-nav-link" onClick={scrollTo('artists')}>Artists</a>
             <a href="/media-package" className="d2-nav-link">Media Package</a>
