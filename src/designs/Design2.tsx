@@ -1760,6 +1760,7 @@ export default function Design2() {
             <a href="/media-package" className="d2-nav-link">Media Package</a>
             <a href="#contact" className="d2-nav-link" onClick={scrollTo('contact')}>Contact</a>
           </div>
+          <a href="#contact" className="d2-nav-cta" onClick={scrollTo('contact')}>Join Mailing List</a>
         </nav>
 
         {/* ─── HERO ─── */}
