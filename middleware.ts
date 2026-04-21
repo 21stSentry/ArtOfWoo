@@ -16,8 +16,8 @@ export const config = {
 }
 
 export default function middleware(request: Request) {
-  const expectedUser = process.env[USER_ENV]
-  const expectedPassword = process.env[PASSWORD_ENV]
+  const expectedUser = process.env.EVENT_OPS_BASIC_AUTH_USER
+  const expectedPassword = process.env.EVENT_OPS_BASIC_AUTH_PASSWORD
 
   if (!expectedUser || !expectedPassword) {
     return new Response(
