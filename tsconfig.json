@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["node"],
     "target": "ESNext",
     "module": "ESNext",
     "moduleDetection": "force",
@@ -13,5 +14,5 @@
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "api", "middleware.ts"]
 }
