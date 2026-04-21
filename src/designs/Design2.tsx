@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useDocumentSeo } from '../seo'
+import CHURCH_OF_WOO_INLINE_RAW from '../../images/church-of-woo-logo-inline.svg?raw'
 
 const HOME_TITLE = 'Immersive Music and Art Experience in San Francisco Bay Area | Church of Woo'
 const HOME_DESCRIPTION = 'Church of Woo by Woo Art Collective is an immersive music and art experience in the San Francisco Bay Area featuring spatial surround sound, a tactile bass floor, ceremony, and live performance.'
 const HERO_LOGO = new URL('../../images/church-of-woo-logo.svg', import.meta.url).href
-const SONIC_BLOOM_LOGO = new URL('../../images/sonic-bloom-logo.svg', import.meta.url).href
 const HOME_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -22,6 +22,52 @@ const HOME_SCHEMA = {
     },
   ],
 }
+
+function buildInlineChurchWordmarkSvg(svgMarkup: string) {
+  const cleanedMarkup = svgMarkup
+    .replace(/<\?xml[\s\S]*?\?>/gi, '')
+    .replace(/<!DOCTYPE[\s\S]*?>/gi, '')
+    .trim()
+
+  const rootTagMatch = cleanedMarkup.match(/<svg\b[^>]*>/i)
+  if (!rootTagMatch) {
+    return cleanedMarkup
+  }
+
+  const rootTag = rootTagMatch[0].replace('<svg', '<svg class="d2-church-woo-inline-svg"')
+  const innerMarkup = cleanedMarkup
+    .replace(/^[\s\S]*?<svg\b[^>]*>/i, '')
+    .replace(/<\/svg>\s*$/i, '')
+    .trim()
+  const baseMarkup = innerMarkup.replace(/\sfill="[^"]*"/g, ' fill="url(#church-woo-gold)"')
+  const shimmerMarkup = innerMarkup.replace(/\sfill="[^"]*"/g, ' fill="url(#church-woo-shimmer)"')
+
+  return `${rootTag}
+    <defs>
+      <linearGradient id="church-woo-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff5c8" />
+        <stop offset="24%" stop-color="#f5da8f" />
+        <stop offset="52%" stop-color="#d8aa43" />
+        <stop offset="76%" stop-color="#f0d78a" />
+        <stop offset="100%" stop-color="#8f6417" />
+      </linearGradient>
+      <linearGradient id="church-woo-shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+        <stop offset="35%" stop-color="rgba(255,245,205,0.12)" />
+        <stop offset="50%" stop-color="rgba(255,255,255,0.98)" />
+        <stop offset="65%" stop-color="rgba(255,239,170,0.22)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+      </linearGradient>
+      <clipPath id="church-woo-shimmer-clip">
+        <rect class="d2-church-woo-inline-shimmer-rect" x="-22%" y="-5%" width="26%" height="110%" />
+      </clipPath>
+    </defs>
+    <g class="d2-church-woo-inline-base">${baseMarkup}</g>
+    <g class="d2-church-woo-inline-shimmer-group" clip-path="url(#church-woo-shimmer-clip)">${shimmerMarkup}</g>
+  </svg>`
+}
+
+const CHURCH_OF_WOO_INLINE_MARKUP = buildInlineChurchWordmarkSvg(CHURCH_OF_WOO_INLINE_RAW)
 
 function getSubscribeEndpoint() {
   const hostname = window.location.hostname
@@ -265,19 +311,38 @@ html { scroll-behavior: smooth; }
   animation: d2FadeIn 1s ease 0.4s both;
 }
 
-.d2-sonic-bloom-logo {
-  position: absolute;
-  top: 7rem;
-  left: clamp(2rem, 5vw, 5rem);
+.d2-church-woo-inline {
+  position: relative;
   z-index: 2;
-  display: block;
-  height: 100px;
-  width: auto;
-  max-width: min(42vw, 24rem);
-  object-fit: contain;
+  width: min(34rem, 78vw);
+  margin: 0 auto 1.25rem;
   animation: d2FadeIn 1s ease 0.32s both;
-  user-select: none;
-  -webkit-user-drag: none;
+}
+
+.d2-church-woo-inline-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.d2-church-woo-inline-base {
+  filter:
+    drop-shadow(0 2px 0 rgba(116, 78, 16, 0.7))
+    drop-shadow(0 14px 26px rgba(0, 0, 0, 0.28))
+    drop-shadow(0 0 18px rgba(242, 214, 122, 0.22));
+}
+
+.d2-church-woo-inline-shimmer-group {
+  opacity: var(--church-shimmer-opacity, 0.12);
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 14px rgba(255, 247, 210, 0.32));
+}
+
+.d2-church-woo-inline-shimmer-rect {
+  transform: translateX(var(--church-shimmer-x, 0px)) skewX(-18deg);
+  transform-origin: center;
+  transition: transform 160ms ease-out;
 }
 
 .d2-hero-title-art {
@@ -1547,11 +1612,9 @@ html { scroll-behavior: smooth; }
     letter-spacing: 0.22em;
   }
 
-  .d2-sonic-bloom-logo {
-    top: 5.5rem;
-    left: 1rem;
-    height: 100px;
-    max-width: 60vw;
+  .d2-church-woo-inline {
+    width: min(28rem, 82vw);
+    margin-bottom: 1rem;
   }
 
   .d2-form-privacy {
@@ -1797,11 +1860,13 @@ export default function Design2() {
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img
-              className="d2-sonic-bloom-logo"
-              src={SONIC_BLOOM_LOGO}
-              alt="Sonic Bloom SF"
-              loading="eager"
+            <div
+              className="d2-church-woo-inline"
+              style={{
+                '--church-shimmer-x': `${36 + logoMotion.shiftX * 2.4}px`,
+                '--church-shimmer-opacity': `${0.16 + Math.min(0.34, (Math.abs(logoMotion.shiftX) + Math.abs(logoMotion.shiftY)) * 0.018)}`,
+              } as React.CSSProperties}
+              dangerouslySetInnerHTML={{ __html: CHURCH_OF_WOO_INLINE_MARKUP }}
             />
             <h1 className="d2-hero-eyebrow">San Francisco Bay Area<br />Immersive music & art experiences</h1>
 
