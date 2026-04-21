@@ -124,19 +124,11 @@ html { scroll-behavior: smooth; }
   right: 0;
   z-index: 100;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 1.5rem clamp(2rem, 5vw, 5rem);
   background: linear-gradient(to bottom, rgba(8,5,16,0.9), transparent);
   backdrop-filter: blur(2px);
-}
-
-.d2-nav-logo {
-  font-family: 'Cormorant SC', serif;
-  font-size: 1rem;
-  letter-spacing: 0.3em;
-  color: #c9a84c;
-  text-decoration: none;
 }
 
 .d2-nav-links {
@@ -1303,17 +1295,12 @@ html { scroll-behavior: smooth; }
     padding: 1rem 1.5rem;
     flex-wrap: wrap;
     gap: 0.9rem 1.2rem;
-    justify-content: center;
-  }
-
-  .d2-nav-logo {
-    width: 100%;
-    text-align: center;
+    justify-content: flex-start;
   }
 
   .d2-nav-links {
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 0.9rem 1.25rem;
   }
@@ -1385,11 +1372,6 @@ html { scroll-behavior: smooth; }
     gap: 0.75rem;
     background: linear-gradient(to bottom, rgba(8,5,16,0.92), rgba(8,5,16,0.35), transparent);
     backdrop-filter: none;
-  }
-
-  .d2-nav-logo {
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
   }
 
   .d2-nav-links {
@@ -1772,13 +1754,11 @@ export default function Design2() {
 
         {/* Navigation */}
         <nav className="d2-nav">
-          <a href="#hero" className="d2-nav-logo">Woo Art Collective</a>
           <div className="d2-nav-links">
             <a href="#experience" className="d2-nav-link" onClick={scrollTo('experience')}>The Experience</a>
             <a href="#artists" className="d2-nav-link" onClick={scrollTo('artists')}>Artists</a>
             <a href="/media-package" className="d2-nav-link">Media Package</a>
             <a href="#contact" className="d2-nav-link" onClick={scrollTo('contact')}>Contact</a>
-            <a href="#join" className="d2-nav-cta" onClick={scrollTo('join')}>Join Mailing List</a>
           </div>
         </nav>
 
