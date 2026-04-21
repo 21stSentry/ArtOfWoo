@@ -1,11 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useDocumentSeo } from '../seo'
-import CHURCH_OF_WOO_INLINE_RAW from '../../images/church-of-woo-logo-inline.svg?raw'
 
 const HOME_TITLE = 'Immersive Music and Art Experience in San Francisco Bay Area | Church of Woo'
 const HOME_DESCRIPTION = 'Church of Woo by Woo Art Collective is an immersive music and art experience in the San Francisco Bay Area featuring spatial surround sound, a tactile bass floor, ceremony, and live performance.'
 const HERO_LOGO = new URL('../../images/church-of-woo-logo.svg', import.meta.url).href
-const SONIC_BLOOM_LOGO = new URL('../../images/sonic-bloom-logo.svg', import.meta.url).href
+const CHURCH_OF_WOO_WORDMARK = new URL('../../images/church-of-woo-logo-inline.svg', import.meta.url).href
 const HOME_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -23,39 +22,6 @@ const HOME_SCHEMA = {
     },
   ],
 }
-
-function buildInlineChurchWordmarkSvg(svgMarkup: string) {
-  const cleanedMarkup = svgMarkup
-    .replace(/<\?xml[\s\S]*?\?>/gi, '')
-    .replace(/<!DOCTYPE[\s\S]*?>/gi, '')
-    .trim()
-
-  const rootTagMatch = cleanedMarkup.match(/<svg\b[^>]*>/i)
-  if (!rootTagMatch) {
-    return cleanedMarkup
-  }
-
-  const rootTag = rootTagMatch[0].replace('<svg', '<svg class="d2-church-woo-inline-svg"')
-  const innerMarkup = cleanedMarkup
-    .replace(/^[\s\S]*?<svg\b[^>]*>/i, '')
-    .replace(/<\/svg>\s*$/i, '')
-    .trim()
-  const baseMarkup = innerMarkup.replace(/\sfill="[^"]*"/g, ' fill="url(#church-woo-gold)"')
-  return `${rootTag}
-    <defs>
-      <linearGradient id="church-woo-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#fff5c8" />
-        <stop offset="24%" stop-color="#f5da8f" />
-        <stop offset="52%" stop-color="#d8aa43" />
-        <stop offset="76%" stop-color="#f0d78a" />
-        <stop offset="100%" stop-color="#8f6417" />
-      </linearGradient>
-    </defs>
-    <g class="d2-church-woo-inline-base">${baseMarkup}</g>
-  </svg>`
-}
-
-const CHURCH_OF_WOO_INLINE_MARKUP = buildInlineChurchWordmarkSvg(CHURCH_OF_WOO_INLINE_RAW)
 
 function getSubscribeEndpoint() {
   const hostname = window.location.hostname
@@ -309,28 +275,6 @@ html { scroll-behavior: smooth; }
   animation: d2FadeIn 1s ease 0.4s both;
 }
 
-.d2-church-woo-inline {
-  position: relative;
-  z-index: 2;
-  width: min(34rem, 78vw);
-  margin: 0 auto 1.25rem;
-  animation: d2FadeIn 1s ease 0.32s both;
-}
-
-.d2-church-woo-inline-svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.d2-church-woo-inline-base {
-  filter:
-    drop-shadow(0 2px 0 rgba(116, 78, 16, 0.7))
-    drop-shadow(0 14px 26px rgba(0, 0, 0, 0.28))
-    drop-shadow(0 0 18px rgba(242, 214, 122, 0.22));
-}
-
 .d2-hero-title-art {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3.5rem, 10vw, 9rem);
@@ -455,21 +399,6 @@ html { scroll-behavior: smooth; }
   transform: translate3d(7px, 6px, -14px);
   filter: sepia(0.5) saturate(1.1) brightness(0.88);
   opacity: 0.82;
-}
-
-.d2-hero-logo-highlight {
-  position: absolute;
-  top: -4%;
-  bottom: -4%;
-  left: 10%;
-  width: 18%;
-  background: linear-gradient(90deg, rgba(255,248,210,0), rgba(255,248,210,0.18) 26%, rgba(255,255,255,0.98) 50%, rgba(255,244,198,0.24) 72%, rgba(255,248,210,0));
-  mix-blend-mode: screen;
-  filter: blur(14px);
-  opacity: var(--hero-shimmer-opacity, 0.18);
-  pointer-events: none;
-  transform: translate3d(calc(var(--hero-shimmer-x, 0px) + (var(--logo-shift-x) * -0.28)), calc(var(--logo-shift-y) * -0.32), 30px) skewX(-18deg);
-  transition: transform 160ms ease-out, opacity 160ms ease-out;
 }
 
 .d2-hero-logo {
@@ -1610,11 +1539,6 @@ html { scroll-behavior: smooth; }
     letter-spacing: 0.22em;
   }
 
-  .d2-church-woo-inline {
-    width: min(28rem, 82vw);
-    margin-bottom: 1rem;
-  }
-
   .d2-form-privacy {
     font-size: 0.95rem;
   }
@@ -1842,7 +1766,7 @@ export default function Design2() {
         {/* Navigation */}
         <nav className="d2-nav">
           <div className="d2-nav-links">
-            <img className="d2-nav-brand-mark" src={SONIC_BLOOM_LOGO} alt="Sonic Bloom SF" loading="eager" />
+            <img className="d2-nav-brand-mark" src={CHURCH_OF_WOO_WORDMARK} alt="Church of Woo" loading="eager" />
             <a href="#experience" className="d2-nav-link" onClick={scrollTo('experience')}>The Experience</a>
             <a href="#artists" className="d2-nav-link" onClick={scrollTo('artists')}>Artists</a>
             <a href="/media-package" className="d2-nav-link">Media Package</a>
@@ -1859,7 +1783,6 @@ export default function Design2() {
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className="d2-church-woo-inline" dangerouslySetInnerHTML={{ __html: CHURCH_OF_WOO_INLINE_MARKUP }} />
             <h1 className="d2-hero-eyebrow">San Francisco Bay Area<br />Immersive music & art experiences</h1>
 
             <div
@@ -1871,8 +1794,6 @@ export default function Design2() {
                 '--logo-shift-y': `${logoMotion.shiftY}px`,
                 '--logo-tilt-x': `${logoMotion.tiltX}deg`,
                 '--logo-tilt-y': `${logoMotion.tiltY}deg`,
-                '--hero-shimmer-x': `${logoMotion.shiftX * 4.2}px`,
-                '--hero-shimmer-opacity': `${0.18 + Math.min(0.38, (Math.abs(logoMotion.shiftX) + Math.abs(logoMotion.shiftY)) * 0.016)}`,
               } as React.CSSProperties}
             >
               <div className="d2-hero-logo-aura" />
@@ -1880,7 +1801,6 @@ export default function Design2() {
                 <img className="d2-hero-logo-layer d2-hero-logo-depth-3" src={HERO_LOGO} alt="" aria-hidden="true" />
                 <img className="d2-hero-logo-layer d2-hero-logo-depth-2" src={HERO_LOGO} alt="" aria-hidden="true" />
                 <img className="d2-hero-logo-layer d2-hero-logo-depth-1" src={HERO_LOGO} alt="" aria-hidden="true" />
-                <div className="d2-hero-logo-highlight" />
                 <img
                   className="d2-hero-logo"
                   src={HERO_LOGO}
