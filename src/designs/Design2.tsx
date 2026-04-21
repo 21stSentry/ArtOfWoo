@@ -4,6 +4,7 @@ import { useDocumentSeo } from '../seo'
 const HOME_TITLE = 'Immersive Music and Art Experience in San Francisco Bay Area | Church of Woo'
 const HOME_DESCRIPTION = 'Church of Woo by Woo Art Collective is an immersive music and art experience in the San Francisco Bay Area featuring spatial surround sound, a tactile bass floor, ceremony, and live performance.'
 const HERO_LOGO = new URL('../../images/church-of-woo-logo.svg', import.meta.url).href
+const SONIC_BLOOM_LOGO = new URL('../../images/sonic-bloom-logo.svg', import.meta.url).href
 const HOME_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -124,8 +125,9 @@ html { scroll-behavior: smooth; }
   right: 0;
   z-index: 100;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
   padding: 1.5rem clamp(2rem, 5vw, 5rem);
   background: linear-gradient(to bottom, rgba(8,5,16,0.9), transparent);
   backdrop-filter: blur(2px);
@@ -135,6 +137,7 @@ html { scroll-behavior: smooth; }
   display: flex;
   gap: 2.5rem;
   align-items: center;
+  flex: 1 1 auto;
 }
 
 .d2-nav-link {
@@ -259,6 +262,18 @@ html { scroll-behavior: smooth; }
   margin: 0;
   margin-bottom: 2rem;
   animation: d2FadeIn 1s ease 0.4s both;
+}
+
+.d2-sonic-bloom-logo {
+  display: block;
+  height: 300px;
+  width: auto;
+  max-width: min(78vw, 42rem);
+  object-fit: contain;
+  margin: 0 auto 1.75rem;
+  animation: d2FadeIn 1s ease 0.32s both;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .d2-hero-title-art {
@@ -1295,7 +1310,7 @@ html { scroll-behavior: smooth; }
     padding: 1rem 1.5rem;
     flex-wrap: wrap;
     gap: 0.9rem 1.2rem;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 
   .d2-nav-links {
@@ -1316,6 +1331,10 @@ html { scroll-behavior: smooth; }
 
   .d2-hero-sub {
     max-width: 32rem;
+  }
+
+  .d2-sonic-bloom-logo {
+    height: 240px;
   }
 
   .d2-hero-actions {
@@ -1526,6 +1545,12 @@ html { scroll-behavior: smooth; }
     padding: 1rem 1.25rem;
     font-size: 0.78rem;
     letter-spacing: 0.22em;
+  }
+
+  .d2-sonic-bloom-logo {
+    height: 180px;
+    max-width: 88vw;
+    margin-bottom: 1.25rem;
   }
 
   .d2-form-privacy {
@@ -1771,6 +1796,12 @@ export default function Design2() {
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img
+              className="d2-sonic-bloom-logo"
+              src={SONIC_BLOOM_LOGO}
+              alt="Sonic Bloom SF"
+              loading="eager"
+            />
             <h1 className="d2-hero-eyebrow">San Francisco Bay Area<br />Immersive music & art experiences</h1>
 
             <div
