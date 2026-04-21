@@ -3,6 +3,7 @@ import { useDocumentSeo } from '../seo'
 
 const HOME_TITLE = 'Immersive Music and Art Experience in San Francisco Bay Area | Church of Woo'
 const HOME_DESCRIPTION = 'Church of Woo by Woo Art Collective is an immersive music and art experience in the San Francisco Bay Area featuring spatial surround sound, a tactile bass floor, ceremony, and live performance.'
+const HERO_LOGO = new URL('../../images/church-of-woo-logo.svg', import.meta.url).href
 const HOME_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -319,12 +320,100 @@ html { scroll-behavior: smooth; }
   animation: d2FadeIn 1.2s ease 0.6s both;
 }
 
+.d2-hero-logo-stage {
+  position: relative;
+  width: min(43rem, 82vw);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  animation: d2FadeIn 1.2s ease 0.5s both;
+  --logo-shift-x: 0px;
+  --logo-shift-y: 0px;
+  --logo-tilt-x: 0deg;
+  --logo-tilt-y: 0deg;
+}
+
+.d2-hero-logo-aura {
+  position: absolute;
+  inset: 12% 10%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(240, 215, 140, 0.3), rgba(201,168,76,0.12) 42%, transparent 72%),
+    radial-gradient(circle at 50% 58%, rgba(58, 191, 176, 0.12), transparent 56%);
+  filter: blur(26px);
+  transform:
+    translate3d(calc(var(--logo-shift-x) * 0.45), calc(var(--logo-shift-y) * 0.45), -100px)
+    scale(0.96);
+  pointer-events: none;
+}
+
+.d2-hero-logo-layer,
 .d2-hero-logo {
   display: block;
-  width: min(39rem, 78vw);
+  width: 100%;
   height: auto;
-  margin: 0 auto;
-  animation: d2FadeIn 1.2s ease 0.5s both;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.d2-hero-logo-wrap {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transform:
+    rotateX(var(--logo-tilt-x))
+    rotateY(var(--logo-tilt-y))
+    translate3d(var(--logo-shift-x), var(--logo-shift-y), 0);
+  transition: transform 140ms ease-out;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.28));
+}
+
+.d2-hero-logo-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.98;
+}
+
+.d2-hero-logo-depth-3 {
+  transform: translate3d(18px, 16px, -60px);
+  filter: sepia(0.8) saturate(0.85) brightness(0.38);
+  opacity: 0.34;
+}
+
+.d2-hero-logo-depth-2 {
+  transform: translate3d(12px, 10px, -34px);
+  filter: sepia(0.92) saturate(0.95) brightness(0.56);
+  opacity: 0.5;
+}
+
+.d2-hero-logo-depth-1 {
+  transform: translate3d(7px, 6px, -14px);
+  filter: sepia(0.5) saturate(1.1) brightness(0.88);
+  opacity: 0.82;
+}
+
+.d2-hero-logo-highlight {
+  position: absolute;
+  inset: 3% 14% 45%;
+  background: linear-gradient(180deg, rgba(255,248,210,0.55), rgba(255,248,210,0));
+  mix-blend-mode: screen;
+  filter: blur(18px);
+  opacity: 0.45;
+  pointer-events: none;
+  transform: translate3d(calc(var(--logo-shift-x) * -0.3), calc(var(--logo-shift-y) * -0.45), 30px);
+}
+
+.d2-hero-logo {
+  position: relative;
+  z-index: 4;
+  transform: translateZ(28px);
+  filter:
+    drop-shadow(0 4px 0 rgba(162, 120, 28, 0.55))
+    drop-shadow(0 16px 34px rgba(0, 0, 0, 0.36))
+    drop-shadow(0 0 22px rgba(251, 238, 152, 0.18));
 }
 
 .d2-hero-sub {
@@ -1368,6 +1457,10 @@ html { scroll-behavior: smooth; }
     width: min(30rem, 84vw);
   }
 
+  .d2-hero-logo-stage {
+    width: min(31rem, 86vw);
+  }
+
   .d2-hero-sub,
   .d2-cta-text,
   .d2-body-text,
@@ -1477,7 +1570,6 @@ html { scroll-behavior: smooth; }
 
 const IMG = {
   stainedGlass: '/images/church-of-woo-stained-glass.jpg',
-  logo:         '/images/church-of-woo-logo.webp',
   eventNotel:   '/images/church-of-woo-notel-event.jpg',
   bassFloor:    '/images/crescendo-bass-floor-tiles.jpg',
   mrTea:        '/images/mr-tea-michael-devin.jpg',
@@ -1557,6 +1649,12 @@ export default function Design2() {
     schema: HOME_SCHEMA,
   })
 
+  const [logoMotion, setLogoMotion] = useState({
+    shiftX: 0,
+    shiftY: 0,
+    tiltX: 0,
+    tiltY: 0,
+  })
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -1591,6 +1689,30 @@ export default function Design2() {
   const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(null)
   const openLightbox = useCallback((src: string, caption: string) => setLightbox({ src, caption }), [])
   const closeLightbox = useCallback(() => setLightbox(null), [])
+
+  const handleLogoPointerMove = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const px = (event.clientX - rect.left) / rect.width
+    const py = (event.clientY - rect.top) / rect.height
+    const nx = px * 2 - 1
+    const ny = py * 2 - 1
+
+    setLogoMotion({
+      shiftX: nx * 8,
+      shiftY: ny * 5,
+      tiltX: ny * -5,
+      tiltY: nx * 7,
+    })
+  }, [])
+
+  const resetLogoMotion = useCallback(() => {
+    setLogoMotion({
+      shiftX: 0,
+      shiftY: 0,
+      tiltX: 0,
+      tiltY: 0,
+    })
+  }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -1670,12 +1792,31 @@ export default function Design2() {
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h1 className="d2-hero-eyebrow">San Francisco Bay Area<br />Immersive music & art experiences</h1>
 
-            <img
-              className="d2-hero-logo"
-              src={IMG.logo}
-              alt="Church Of Woo"
-              loading="eager"
-            />
+            <div
+              className="d2-hero-logo-stage"
+              onPointerMove={handleLogoPointerMove}
+              onPointerLeave={resetLogoMotion}
+              style={{
+                '--logo-shift-x': `${logoMotion.shiftX}px`,
+                '--logo-shift-y': `${logoMotion.shiftY}px`,
+                '--logo-tilt-x': `${logoMotion.tiltX}deg`,
+                '--logo-tilt-y': `${logoMotion.tiltY}deg`,
+              } as React.CSSProperties}
+            >
+              <div className="d2-hero-logo-aura" />
+              <div className="d2-hero-logo-wrap">
+                <img className="d2-hero-logo-layer d2-hero-logo-depth-3" src={HERO_LOGO} alt="" aria-hidden="true" />
+                <img className="d2-hero-logo-layer d2-hero-logo-depth-2" src={HERO_LOGO} alt="" aria-hidden="true" />
+                <img className="d2-hero-logo-layer d2-hero-logo-depth-1" src={HERO_LOGO} alt="" aria-hidden="true" />
+                <div className="d2-hero-logo-highlight" />
+                <img
+                  className="d2-hero-logo"
+                  src={HERO_LOGO}
+                  alt="Church Of Woo"
+                  loading="eager"
+                />
+              </div>
+            </div>
             <span className="d2-hero-title-of">— of —</span>
 
             <p className="d2-hero-sub">
