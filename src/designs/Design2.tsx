@@ -5,6 +5,7 @@ import CHURCH_OF_WOO_INLINE_RAW from '../../images/church-of-woo-logo-inline.svg
 const HOME_TITLE = 'Immersive Music and Art Experience in San Francisco Bay Area | Church of Woo'
 const HOME_DESCRIPTION = 'Church of Woo by Woo Art Collective is an immersive music and art experience in the San Francisco Bay Area featuring spatial surround sound, a tactile bass floor, ceremony, and live performance.'
 const HERO_LOGO = new URL('../../images/church-of-woo-logo.svg', import.meta.url).href
+const SONIC_BLOOM_LOGO = new URL('../../images/sonic-bloom-logo.svg', import.meta.url).href
 const HOME_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -40,8 +41,6 @@ function buildInlineChurchWordmarkSvg(svgMarkup: string) {
     .replace(/<\/svg>\s*$/i, '')
     .trim()
   const baseMarkup = innerMarkup.replace(/\sfill="[^"]*"/g, ' fill="url(#church-woo-gold)"')
-  const shimmerMarkup = innerMarkup.replace(/\sfill="[^"]*"/g, ' fill="url(#church-woo-shimmer)"')
-
   return `${rootTag}
     <defs>
       <linearGradient id="church-woo-gold" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -51,19 +50,8 @@ function buildInlineChurchWordmarkSvg(svgMarkup: string) {
         <stop offset="76%" stop-color="#f0d78a" />
         <stop offset="100%" stop-color="#8f6417" />
       </linearGradient>
-      <linearGradient id="church-woo-shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="rgba(255,255,255,0)" />
-        <stop offset="35%" stop-color="rgba(255,245,205,0.12)" />
-        <stop offset="50%" stop-color="rgba(255,255,255,0.98)" />
-        <stop offset="65%" stop-color="rgba(255,239,170,0.22)" />
-        <stop offset="100%" stop-color="rgba(255,255,255,0)" />
-      </linearGradient>
-      <clipPath id="church-woo-shimmer-clip">
-        <rect class="d2-church-woo-inline-shimmer-rect" x="-22%" y="-5%" width="26%" height="110%" />
-      </clipPath>
     </defs>
     <g class="d2-church-woo-inline-base">${baseMarkup}</g>
-    <g class="d2-church-woo-inline-shimmer-group" clip-path="url(#church-woo-shimmer-clip)">${shimmerMarkup}</g>
   </svg>`
 }
 
@@ -184,6 +172,16 @@ html { scroll-behavior: smooth; }
   gap: 2.5rem;
   align-items: center;
   flex: 1 1 auto;
+}
+
+.d2-nav-brand-mark {
+  display: block;
+  height: 50px;
+  width: auto;
+  flex: 0 0 auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .d2-nav-link {
@@ -333,18 +331,6 @@ html { scroll-behavior: smooth; }
     drop-shadow(0 0 18px rgba(242, 214, 122, 0.22));
 }
 
-.d2-church-woo-inline-shimmer-group {
-  opacity: var(--church-shimmer-opacity, 0.12);
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 14px rgba(255, 247, 210, 0.32));
-}
-
-.d2-church-woo-inline-shimmer-rect {
-  transform: translateX(var(--church-shimmer-x, 0px)) skewX(-18deg);
-  transform-origin: center;
-  transition: transform 160ms ease-out;
-}
-
 .d2-hero-title-art {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3.5rem, 10vw, 9rem);
@@ -473,13 +459,17 @@ html { scroll-behavior: smooth; }
 
 .d2-hero-logo-highlight {
   position: absolute;
-  inset: 3% 14% 45%;
-  background: linear-gradient(180deg, rgba(255,248,210,0.55), rgba(255,248,210,0));
+  top: -4%;
+  bottom: -4%;
+  left: 10%;
+  width: 18%;
+  background: linear-gradient(90deg, rgba(255,248,210,0), rgba(255,248,210,0.18) 26%, rgba(255,255,255,0.98) 50%, rgba(255,244,198,0.24) 72%, rgba(255,248,210,0));
   mix-blend-mode: screen;
-  filter: blur(18px);
-  opacity: 0.45;
+  filter: blur(14px);
+  opacity: var(--hero-shimmer-opacity, 0.18);
   pointer-events: none;
-  transform: translate3d(calc(var(--logo-shift-x) * -0.3), calc(var(--logo-shift-y) * -0.45), 30px);
+  transform: translate3d(calc(var(--hero-shimmer-x, 0px) + (var(--logo-shift-x) * -0.28)), calc(var(--logo-shift-y) * -0.32), 30px) skewX(-18deg);
+  transition: transform 160ms ease-out, opacity 160ms ease-out;
 }
 
 .d2-hero-logo {
@@ -1389,6 +1379,10 @@ html { scroll-behavior: smooth; }
     gap: 0.9rem 1.25rem;
   }
 
+  .d2-nav-brand-mark {
+    height: 42px;
+  }
+
   .d2-container {
     padding: 0 1.5rem;
   }
@@ -1460,6 +1454,10 @@ html { scroll-behavior: smooth; }
 
   .d2-nav-links {
     gap: 0.6rem 0.9rem;
+  }
+
+  .d2-nav-brand-mark {
+    height: 34px;
   }
 
   .d2-nav-link {
@@ -1844,6 +1842,7 @@ export default function Design2() {
         {/* Navigation */}
         <nav className="d2-nav">
           <div className="d2-nav-links">
+            <img className="d2-nav-brand-mark" src={SONIC_BLOOM_LOGO} alt="Sonic Bloom SF" loading="eager" />
             <a href="#experience" className="d2-nav-link" onClick={scrollTo('experience')}>The Experience</a>
             <a href="#artists" className="d2-nav-link" onClick={scrollTo('artists')}>Artists</a>
             <a href="/media-package" className="d2-nav-link">Media Package</a>
@@ -1860,14 +1859,7 @@ export default function Design2() {
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div
-              className="d2-church-woo-inline"
-              style={{
-                '--church-shimmer-x': `${36 + logoMotion.shiftX * 2.4}px`,
-                '--church-shimmer-opacity': `${0.16 + Math.min(0.34, (Math.abs(logoMotion.shiftX) + Math.abs(logoMotion.shiftY)) * 0.018)}`,
-              } as React.CSSProperties}
-              dangerouslySetInnerHTML={{ __html: CHURCH_OF_WOO_INLINE_MARKUP }}
-            />
+            <div className="d2-church-woo-inline" dangerouslySetInnerHTML={{ __html: CHURCH_OF_WOO_INLINE_MARKUP }} />
             <h1 className="d2-hero-eyebrow">San Francisco Bay Area<br />Immersive music & art experiences</h1>
 
             <div
@@ -1879,6 +1871,8 @@ export default function Design2() {
                 '--logo-shift-y': `${logoMotion.shiftY}px`,
                 '--logo-tilt-x': `${logoMotion.tiltX}deg`,
                 '--logo-tilt-y': `${logoMotion.tiltY}deg`,
+                '--hero-shimmer-x': `${logoMotion.shiftX * 4.2}px`,
+                '--hero-shimmer-opacity': `${0.18 + Math.min(0.38, (Math.abs(logoMotion.shiftX) + Math.abs(logoMotion.shiftY)) * 0.016)}`,
               } as React.CSSProperties}
             >
               <div className="d2-hero-logo-aura" />
