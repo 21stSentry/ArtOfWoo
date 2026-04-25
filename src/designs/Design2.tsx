@@ -2017,7 +2017,6 @@ export default function Design2() {
                   The Museum of Forgotten Fun offers an evening performance ~75 minutes in length and chock-full of unforgettable journeys to the 1,000 year past.
                 </p>
                 <p>
-                  Want to come but can't make this date and time? The Museum anticipates this possibility with three other showtimes available here:{' '}
                   <a href="https://www.eventbrite.com/e/museum-of-forgotten-fun-3026-tickets-1987142465607" target="_blank" rel="noopener noreferrer">
                     https://www.eventbrite.com/e/museum-of-forgotten-fun-3026-tickets-1987142465607
                   </a>
