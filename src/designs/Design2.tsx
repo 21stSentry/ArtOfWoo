@@ -2004,7 +2004,14 @@ export default function Design2() {
               </div>
               <div className="d2-moff-copy">
                 <p>
-                  Welcome to the year 3026. We have questions. Questions like: What exactly did people do for "fun" in the 2020s? The Museum of Forgotten Fun has the answers in our newest exhibit. Join us for an immersive experience featuring five emerging curators: Casey Selden, Bradley Gottesman, Victoria Liu, Micheal Devin, and led by Museum Chief Curator Alison Tarwater.
+                  <strong>
+                    Museum of Forgotten Fun<br />
+                    Apr 29 - May 2<br />
+                    995 Market Street San Francisco, CA
+                  </strong>
+                </p>
+                <p>
+                  Welcome to the year 3026. We have questions. Questions like: What exactly did people do for "fun" in the 2020s? The Museum of Forgotten Fun has the answers in our newest exhibit. Join us for an immersive experience featuring five emerging curators: Casey Selden, Bradley Gottesman, Victoria Liu, Michael Devin, and led by Museum Chief Curator Alison Tarwater.
                 </p>
                 <p>
                   The Museum of Forgotten Fun offers an evening performance ~75 minutes in length and chock-full of unforgettable journeys to the 1,000 year past.
