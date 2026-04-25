@@ -665,6 +665,53 @@ html { scroll-behavior: smooth; }
   color: #d4c090;
 }
 
+.d2-moff-feature {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  margin: 3rem auto 0;
+  max-width: 1040px;
+  text-align: left;
+}
+
+.d2-moff-image {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(201,168,76,0.28);
+  box-shadow: 0 0 0 6px rgba(8,5,16,1), 0 0 0 7px rgba(201,168,76,0.1), 0 35px 90px rgba(0,0,0,0.45);
+}
+
+.d2-moff-copy {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+  font-weight: 400;
+  line-height: 1.75;
+  color: #d4c090;
+}
+
+.d2-moff-copy p + p {
+  margin-top: 1.2rem;
+}
+
+.d2-moff-copy a {
+  color: #e0c078;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.d2-private-events-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #e2d0a8;
+  max-width: 520px;
+  margin: 0 auto 1rem;
+  line-height: 1.7;
+}
+
 /* ─── ARTISTS ─── */
 .d2-artists {
   padding: 8rem 0;
@@ -1341,6 +1388,7 @@ html { scroll-behavior: smooth; }
   }
 
   .d2-about-inner,
+  .d2-moff-feature,
   .d2-contact-row,
   .d2-testimonial-grid,
   .d2-artist-grid,
@@ -1469,6 +1517,16 @@ html { scroll-behavior: smooth; }
     font-size: clamp(2rem, 11vw, 3.1rem);
   }
 
+  .d2-moff-feature {
+    margin-top: 2rem;
+    gap: 1.8rem;
+  }
+
+  .d2-moff-copy {
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
   .d2-ornament-divider {
     gap: 0.75rem;
   }
@@ -1568,6 +1626,7 @@ const IMG = {
   mrTea:        '/images/mr-tea-michael-devin.jpg',
   dalyte:       '/images/dalyte-kodzis-singer-performer.jpg',
   ambscience:   '/images/ambscience-paul-de-konkoly-thege.jpg',
+  moffFlyer:    new URL('../../images/MoFF-flyer.jpg', import.meta.url).href,
 }
 
 const particles = Array.from({ length: 30 }, (_, i) => {
@@ -1928,11 +1987,39 @@ export default function Design2() {
             <h2 className="d2-exp-title" style={{ display: 'none' }}>The Gut Grotto</h2>
             <span className="d2-exp-subtitle" style={{ display: 'none' }}>A journey in two chambers</span>
 
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.2rem', fontWeight: 400, fontStyle: 'italic', color: '#e2d0a8', maxWidth: '520px', margin: '0 auto 1rem', lineHeight: 1.7 }}>
-              We will be hosting events around California and beyond this year.<br/>Contact us for Private events
-            </p>
+            <p className="d2-private-events-note">Contact us for private events</p>
 
             <OrnamentTop width={180} opacity={0.2} />
+
+            <div className="d2-moff-feature">
+              <div>
+                <img
+                  className="d2-moff-image d2-clickable"
+                  src={IMG.moffFlyer}
+                  alt="The Museum of Forgotten Fun flyer"
+                  title="The Museum of Forgotten Fun 3026 flyer"
+                  loading="lazy"
+                  onClick={() => openLightbox(IMG.moffFlyer, 'The Museum of Forgotten Fun')}
+                />
+              </div>
+              <div className="d2-moff-copy">
+                <p>
+                  Welcome to the year 3026. We have questions. Questions like: What exactly did people do for "fun" in the 2020s? The Museum of Forgotten Fun has the answers in our newest exhibit. Join us for an immersive experience featuring five emerging curators: Casey Selden, Bradley Gottesman, Victoria Liu, Micheal Devin, and led by Museum Chief Curator Alison Tarwater.
+                </p>
+                <p>
+                  The Museum of Forgotten Fun offers an evening performance ~75 minutes in length and chock-full of unforgettable journeys to the 1,000 year past.
+                </p>
+                <p>
+                  Want to come but can't make this date and time? The Museum anticipates this possibility with three other showtimes available here:{' '}
+                  <a href="https://www.eventbrite.com/e/museum-of-forgotten-fun-3026-tickets-1987142465607" target="_blank" rel="noopener noreferrer">
+                    https://www.eventbrite.com/e/museum-of-forgotten-fun-3026-tickets-1987142465607
+                  </a>
+                </p>
+                <p>
+                  This event is likely to sell out, so please commit early. Tickets are $40.
+                </p>
+              </div>
+            </div>
 
             <div className="d2-exp-cards" style={{ marginTop: '3rem', display: 'none' }}>
               <div className="d2-exp-card">
