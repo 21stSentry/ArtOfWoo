@@ -803,6 +803,17 @@ html { scroll-behavior: smooth; }
   border-color: #c9a84c;
 }
 
+.d2-artist-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  margin-top: 0.85rem;
+}
+
+.d2-artist-link-list .d2-artist-link {
+  margin-top: 0;
+}
+
 /* ─── TESTIMONIALS ─── */
 .d2-testimonials {
   padding: 8rem 0;
@@ -2121,6 +2132,12 @@ export default function Design2() {
                   Michael Devin (Mr. Tea) was drawn to the electronic music invasion of the British music scene in the late '80s, influenced by artists such as S'Express, Adamski, N-Joi, and Future Sound of London. In the '90s, he released music on various labels, including Leftfield's Hard Hands and Concrete, collaborating with Andrew Weatherall and Jagz Cooner of Sabres of Paradise. His work received heavy airplay from notable DJs like Annie Nightingale, Justin Robertson, and John Peel. After a break and a move to San Francisco, Mr. Tea is back, biscuit in one hand and drum machine in the other.
                 </p>
                 <a href="https://linktr.ee/mrtea_sf" target="_blank" rel="noopener noreferrer" className="d2-artist-link">linktr.ee/mrtea_sf</a>
+                <div className="d2-artist-link-list" aria-label="Michael Devin media links">
+                  <a href="https://mrtea.bandcamp.com" target="_blank" rel="noopener noreferrer" className="d2-artist-link">Bandcamp</a>
+                  <a href="https://soundcloud.com/21stsentry" target="_blank" rel="noopener noreferrer" className="d2-artist-link">SoundCloud</a>
+                  <a href="https://www.beatport.com/artist/mr-tea/139148" target="_blank" rel="noopener noreferrer" className="d2-artist-link">Beatport</a>
+                  <a href="https://www.linkedin.com/in/michaeldevin" target="_blank" rel="noopener noreferrer" className="d2-artist-link">LinkedIn</a>
+                </div>
               </div>
 
               <div className="d2-artist-card">

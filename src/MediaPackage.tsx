@@ -891,6 +891,7 @@ const rightBlocks = [
           { label: 'Bandcamp', href: 'https://mrtea.bandcamp.com' },
           { label: 'SoundCloud', href: 'https://soundcloud.com/21stsentry' },
           { label: 'Beatport', href: 'https://www.beatport.com/artist/mr-tea/139148' },
+          { label: 'LinkedIn', href: 'https://www.linkedin.com/in/michaeldevin' },
         ],
       },
       {
